@@ -1,0 +1,6 @@
+touch test
+echo 'testing' > test
+git add test
+git commit
+git push https://github.com/maaadrien/scrapping.git master
+git pull https://github.com/maaadrien/scrapping.git master
