@@ -44,12 +44,12 @@ class Scraper1(Scraper):
 
     def formatDurationDOM(self, videoDOM):
         videoDOM.span.decompose()
-        return self.splitToSec(videoDOM.text.strip(), ":")
+        return int(self.splitToSec(videoDOM.text.strip(), ":"))
 
     def formatViewsDOM(self, videoDOM):
         videoDOM.span.decompose()
-        return videoDOM.text.strip().replace(',',"")
+        return int(videoDOM.text.strip().replace(',',""))
 
     def formatRatingDOM(self, videoDOM):
         videoDOM.span.decompose()
-        return videoDOM.text.strip().replace('%',"")
+        return int(videoDOM.text.strip().replace('%',""))

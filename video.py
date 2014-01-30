@@ -15,11 +15,12 @@ class Video:
         print("==================================================")
         print(self.title)
         print(self.link)
-        print("Duration: ", self.secToTime(self.duration))
+        print("Duration: ", self.durationToTime())
         print("Views:    ", self.views)
         print("Rating:   ", self.rating, "% ")
 
-    def secToTime(self, sec):
+    def durationToTime(self):
+        sec = self.duration
         hrs = sec // 3600
         sec -= 3600*hrs
         mins = sec // 60
