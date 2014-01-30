@@ -7,6 +7,9 @@ class Video:
         self.views    = views
         self.rating   = rating
 
+    def __repr__(self):
+        return repr((self.link, self.title, self.duration, self.views, self.rating))
+
     def printVid(self):
         print("")
         print("==================================================")

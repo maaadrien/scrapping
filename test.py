@@ -6,13 +6,32 @@ import requests
 import codecs
 from video import Video
 
+#==========FUNC=========
+def splitToSec(strDur, sep):
+    duration = strDur.split(sep)
+    print(strDur)
+    nbParts = len(duration)
+    print(nbParts)
+    
+    if nbParts == 1:
+        duration = int(duration[0])
+    elif nbParts == 2:
+        duration = int(duration[0]) * 60 + int(duration[1])
+    elif nbParts == 3:
+        duration = int(duration[0]) * 3600 + int(duration[1]) * 60 + int(duration[2])
+    return duration
+
+#=======================
+
+
 
 # url = input("Enter a website to extract the URL's from: ")
 f = open('url.txt', 'r')
 url = f.read()
 
+vid_list = []
 
-for page in range(1,5):
+for page in range(1,2):
     print("")
     print("")
     print("==================================================")
@@ -21,31 +40,30 @@ for page in range(1,5):
     r  = requests.get("http://" +url+str(page))
     data = r.text
     soup = BeautifulSoup(data)
+
     boxes = soup.find_all("li", {"class": "videoBox"})
+
     for box in boxes:
         
         linkElem = box.find("a", {"class": "videoTitle"})
         viewsElem = box.find("div", {"class": "views"})
-        viewsElem.span.decompose()
         durationElem = box.find("div", {"class": "duration"})
-        durationElem.span.decompose()
         ratingElem = box.find("div", {"class": "rating"})
+
+        durationElem.span.decompose()
         ratingElem.span.decompose()
+        viewsElem.span.decompose()
 
         link = url + linkElem['href'].strip()
         title = linkElem.text.strip().encode(sys.stdout.encoding, errors='replace').decode('cp850')
-        duration = durationElem.text.strip()
-        views = viewsElem.text.strip()
-        rating = ratingElem.text.strip()
+        duration =  splitToSec(durationElem.text.strip(), ":")
+        views = viewsElem.text.strip().replace(',',"")
+        rating = ratingElem.text.strip().replace('%',"")
         
-        
-        
-        
-        
-        # print(link.text.strip().encode(sys.stdout.encoding, errors='replace').decode('cp850'))
-        # print(url + link['href'].strip())
-        # print(duration.text.strip())
-        # print(views.text.strip())
-        # print(rating.text.strip())
         vid = Video(link, title, duration, views, rating)
         vid.printVid()
+        vid_list.append(vid)
+
+
+print(sorted(vid_list, key=lambda video: video.rating, reverse=True))
+
