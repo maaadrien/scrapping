@@ -8,7 +8,7 @@ class Scraper:
 
     def __init__(self):
         self.vid_list = []
-        self.url = self.loadUrl()
+        self.loadUrl()
 
     def __repr__(self):
         return repr((self.link, self.title, self.duration, self.views, self.rating))
@@ -49,10 +49,11 @@ class Scraper:
         
     def loadUrl(self):
         f = open(self.fichierUrl, 'r')
-        return f.read()
+        self.url = f.readline().strip()
+        self.urlToPage = f.readline().strip()
 
     def requestPage(self, page):
-        r  = requests.get("http://" +self.url+str(page))
+        r  = requests.get("http://" + self.url + self.urlToPage + str(page))
         data = r.text
         return BeautifulSoup(data)
 
