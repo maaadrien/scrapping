@@ -48,7 +48,7 @@ class VideoScraper:
             self.vid_list.append(vid)
         
     def loadUrl(self):
-        f = open(self.fichierUrl, 'r')
+        f = open(self.fileUrl, 'r')
         self.url = f.readline().strip()
         self.urlToPage = f.readline().strip()
 
@@ -77,17 +77,17 @@ class VideoScraper:
         pass
 
     #FORMAT
-    def formatLinkDOM(self, videoDOM):
+    def formatLinkDOM(self, linkDOM):
         pass
 
-    def formatTitleDOM(self, videoDOM):
+    def formatTitleDOM(self, titleDOM):
         pass
 
-    def formatDurationDOM(self, videoDOM):
+    def formatDurationDOM(self, durationDOM):
         pass
 
-    def formatViewsDOM(self, videoDOM):
+    def formatViewsDOM(self, viewsDOM):
         pass
 
-    def formatRatingDOM(self, videoDOM):
+    def formatRatingDOM(self, ratingDOM):
         pass

@@ -6,7 +6,7 @@ class VideoScraper1(VideoScraper):
 
     def __init__(self):
         print("Lauching Scraper1...")
-        self.fichierUrl = "url.txt"
+        self.fileUrl = "url.txt"
         super().__init__()
 
     def __repr__(self):
@@ -36,20 +36,20 @@ class VideoScraper1(VideoScraper):
         return videoDOM.find("div", {"class": "rating"})
 
     #FORMAT
-    def formatLinkDOM(self, videoDOM):
-        return self.url + videoDOM['href'].strip()
+    def formatLinkDOM(self, linkDOM):
+        return self.url + linkDOM['href'].strip()
 
-    def formatTitleDOM(self, videoDOM):
-        return videoDOM.text.strip().encode(sys.stdout.encoding, errors='replace').decode('cp850')
+    def formatTitleDOM(self, titleDOM):
+        return titleDOM.text.strip().encode(sys.stdout.encoding, errors='replace').decode('cp850')
 
-    def formatDurationDOM(self, videoDOM):
-        videoDOM.span.decompose()
-        return int(self.splitToSec(videoDOM.text.strip(), ":"))
+    def formatDurationDOM(self, durationDOM):
+        durationDOM.span.decompose()
+        return int(self.splitToSec(durationDOM.text.strip(), ":"))
 
-    def formatViewsDOM(self, videoDOM):
-        videoDOM.span.decompose()
-        return int(videoDOM.text.strip().replace(',',""))
+    def formatViewsDOM(self, viewsDOM):
+        viewsDOM.span.decompose()
+        return int(viewsDOM.text.strip().replace(',',""))
 
-    def formatRatingDOM(self, videoDOM):
-        videoDOM.span.decompose()
-        return int(videoDOM.text.strip().replace('%',""))
+    def formatRatingDOM(self, ratingDOM):
+        ratingDOM.span.decompose()
+        return int(ratingDOM.text.strip().replace('%',""))
