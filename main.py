@@ -5,7 +5,7 @@ import sys
 import requests
 import codecs
 from video import Video
-from scraper1 import Scraper1
+from videoScraper1 import VideoScraper1
 
 fromPage  = input("from page n°: ")
 countPage = input("number of pages : ")
@@ -15,7 +15,7 @@ if not fromPage:
 if not countPage:
     countPage = 1
 
-scraper1 = Scraper1()
+scraper1 = VideoScraper1()
 scraper1.scrap(int(fromPage), int(countPage))
 
 print("\n\n\n\n")

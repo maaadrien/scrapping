@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import sys
-from scraper import Scraper
+from videoScraper import VideoScraper
 
-class Scraper1(Scraper):
+class VideoScraper1(VideoScraper):
 
     def __init__(self):
         print("Lauching Scraper1...")

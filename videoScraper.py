@@ -4,7 +4,7 @@ import requests
 import codecs
 from video import Video
 
-class Scraper:
+class VideoScraper:
 
     def __init__(self):
         self.vid_list = []
